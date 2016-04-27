@@ -1,4 +1,5 @@
-symPizza
-========
 
-A Symfony project created on April 27, 2016, 11:36 am.
+symPizza
+
+A Symfony 3.0 project
+
