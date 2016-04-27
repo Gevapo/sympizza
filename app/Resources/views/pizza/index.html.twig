@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pizza list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Promo price</th>
+                <th>Info</th>
+                <th>Picture</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pizza in pizzas %}
+            <tr>
+                <td><a href="{{ path('pizza_show', { 'id': pizza.id }) }}">{{ pizza.id }}</a></td>
+                <td>{{ pizza.name }}</td>
+                <td>{{ pizza.price }}</td>
+                <td>{{ pizza.promoPrice }}</td>
+                <td>{{ pizza.info }}</td>
+                <td><img src="{{ asset(pizza.webPath) }}" style="width: 50px"></td>
+                <td>{% if pizza.createdAt %}{{ pizza.createdAt|date('d/m/Y H:i') }}{% endif %}</td>
+                <td>{% if pizza.updatedAt %}{{ pizza.updatedAt|date('d/m/Y H:i') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pizza_show', { 'id': pizza.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pizza_edit', { 'id': pizza.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pizza_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
